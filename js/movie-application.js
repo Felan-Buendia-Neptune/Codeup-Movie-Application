@@ -53,8 +53,8 @@ Rating: ${movie.rating} <br>
     <img src="${movie.poster}">
      </p>`;
         }
-        $("#container").html(htmlStr)
-        $("#add-movie")
+        $("#container").html(htmlStr);
+        $("#add-movie");
 
     });
 }
@@ -103,7 +103,7 @@ let newMovie = {
     "plot": newMovieDescription.value,
     "actors": newMovieActors.value
 
-}
+};
 
 let postThis = {
     "title": newMovieTitle.value,
@@ -115,7 +115,7 @@ let postThis = {
     "plot": newMovieDescription.value,
     "actors": newMovieActors.value
 
-}
+};
 
 let postOptions = {
     method: 'POST',
@@ -131,16 +131,18 @@ $("#new-movie-submit").click(() => {
     fetch('https://abundant-automatic-knee.glitch.me/movies')
         .then(response => response.json())
         .then(movies => {
-            for (let movie of movies) {
-                if(movie.title !== newMovie.title || movie.rating !== newMovie.rating || movie.year !== newMovie.year || movie.genre !== newMovie.genre || movie.director !== newMovie.director || movie.plot !== newMovie.plot || movie.actors !== newMovie.actors) {
-                    fetch('https://abundant-automatic-knee.glitch.me/movies', postOptions)
-                        .then(getMovies);
-                } else {
-                    alert("Hey, that movie already exists!");
-                    break;
-                }
-            }
-        })
+            fetch('https://abundant-automatic-knee.glitch.me/movies', postOptions)
+                .then(getMovies);
+            // for (let movie of movies) {
+            //     if(movie.title !== newMovie.title || movie.rating !== newMovie.rating || movie.year !== newMovie.year || movie.genre !== newMovie.genre || movie.director !== newMovie.director || movie.plot !== newMovie.plot || movie.actors !== newMovie.actors) {
+            //         fetch('https://abundant-automatic-knee.glitch.me/movies', postOptions)
+            //             .then(getMovies);
+            //     } else {
+            //         alert("Hey, that movie already exists!");
+            //         break;
+            //     }
+            // }
+        });
 
 });
 
