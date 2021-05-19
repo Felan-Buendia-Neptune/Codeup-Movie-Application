@@ -38,8 +38,8 @@ let getMovies = () => {
     fetch('https://abundant-automatic-knee.glitch.me/movies')
     .then(response => response.json())
     .then(movies => {
-        hideLoading()
-        console.log(movies)
+        hideLoading();
+        console.log(movies);
         let htmlStr = "";
         for(let movie of movies){
             htmlStr += `<h1>${movie.title}</h1>
@@ -51,7 +51,7 @@ Rating: ${movie.rating} <br>
    Plot: ${movie.plot} <br>
    Actors: ${movie.actors} <br>
     <img src="${movie.poster}">
-     </p>`
+     </p>`;
         }
         $("#container").html(htmlStr)
         $("#add-movie")
