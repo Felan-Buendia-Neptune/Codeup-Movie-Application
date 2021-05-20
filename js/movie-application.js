@@ -17,6 +17,9 @@ $(document).ready(function(){
         $(loader).removeClass("display");
     }
 
+
+
+
 //display container
 
     let getMovies = () => {
@@ -28,30 +31,35 @@ $(document).ready(function(){
                 let htmlStr = "";
                 for (let movie of movies) {
                     htmlStr += `<h1>${movie.title}</h1>
-<p>
-Rating: ${movie.rating} <br>
-Year: ${movie.year} <br>
-Genre: ${movie.genre} <br>
-Directed by: ${movie.director} <br>
-Plot: ${movie.plot} <br>
-Actors: ${movie.actors} <br>
-    <img src="${movie.poster}">
-     </p> <button id="delete-${movies.id}">Delete</button>`
+ <p>
+ Rating: ${movie.rating} 
+ Year: ${movie.year} <br>
+ Genre: ${movie.genre} <br>
+ Directed by: ${movie.director} <br>
+ Plot: ${movie.plot} <br>
+ Actors: ${movie.actors} <br>
+     <img src="${movie.poster}">
+      </p> <button data-id="${movie.id}" class="delete-movie">Delete</button> `
 
                     $("#container").html(htmlStr);
-                    $(`#delete-${movie.id}`).click(function () {
-                        fetch(`https://abundant-automatic-knee.glitch.me/movies/${movie.id}`, deleteOptions).then(getMovies)
-                    })
 
-
-                    let deleteOptions = {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    }
+                     }
+                let deleteOptions = {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
                 }
-    });
+                $(`.delete-movie`).click(function (event) {
+                    let movieID = $(event.target).data("id")
+                    console.log(movieID)
+
+                        alert("this")
+                        fetch(`https://abundant-automatic-knee.glitch.me/movies/${movieID}`, deleteOptions).then(getMovies)
+
+                })
+     });
+
     }
 
 
