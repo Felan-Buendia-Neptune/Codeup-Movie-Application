@@ -1,150 +1,112 @@
+$(document).ready(function(){
 
-const loader = document.querySelector("#loading");
-
-
-
+    const loader = document.querySelector("#loading");
 
 // showing loading
-function displayLoading() {
-    $(loader).addClass("display");
+    function displayLoading() {
+        $(loader).addClass("display");
 
-    // to stop loading after some time
-    setTimeout(() => {
-        $(loader).removeClass("display");
-    }, 5000);
-}
+// to stop loading after some time
+        setTimeout(() => {
+            $(loader).removeClass("display");
+        }, 5000);
+    }
 
 // hiding loading
-function hideLoading() {
-    $(loader).removeClass("display");
-}
+    function hideLoading() {
+        $(loader).removeClass("display");
+    }
 
+//display container
 
-// // showing loading
-// function displayLoading() {
-//     loader.classList.add("display");
-//     // to stop loading after some time
-//     setTimeout(() => {
-//         loader.classList.remove("display");
-//     }, 5000);
-// }
-//
-// // hiding loading
-// function hideLoading() {
-//     loader.classList.remove("display");
-// }
-
-let getMovies = () => {
-    fetch('https://abundant-automatic-knee.glitch.me/movies')
-    .then(response => response.json())
-    .then(movies => {
-        hideLoading();
-        console.log(movies);
-        let htmlStr = "";
-        for(let movie of movies){
-            htmlStr += `<h1>${movie.title}</h1>
+    let getMovies = () => {
+        fetch('https://abundant-automatic-knee.glitch.me/movies')
+            .then(response => response.json())
+            .then(movies => {
+                hideLoading();
+                console.log(movies);
+                let htmlStr = "";
+                for(let movie of movies){
+                    htmlStr += `<h1>${movie.title}</h1>
 <p>
 Rating: ${movie.rating} <br>
- Year: ${movie.year} <br>
-  Genre: ${movie.genre} <br>
-   Directed by: ${movie.director} <br>
-   Plot: ${movie.plot} <br>
-   Actors: ${movie.actors} <br>
+Year: ${movie.year} <br>
+Genre: ${movie.genre} <br>
+Directed by: ${movie.director} <br>
+Plot: ${movie.plot} <br>
+Actors: ${movie.actors} <br>
     <img src="${movie.poster}">
-     </p>`;
-        }
-        $("#container").html(htmlStr);
-        $("#add-movie");
+     </p> <button class="edit-movie-submit">Edit</button>`
+                }
+                $("#container").html(htmlStr);
+            });
+    }
 
+
+
+// display loading
+    function fetchHandler(event) {
+        displayLoading()
+        getMovies()
+    }
+
+    $(document).ready( function () {
+        fetchHandler(event);
     });
-}
 
 
-function fetchHandler(event) {
-    displayLoading()
-    getMovies()
+    //GRAB
+    let newMovieTitle = document.getElementById("movie-title");
+    console.log(newMovieTitle);
+    let newMovieRating = document.getElementById("movie-rating");
+    let newMoviePoster = document.getElementById("movie-poster");
+    let newMovieYear = document.getElementById("movie-year");
+    let newMovieGenre = document.getElementById("movie-genre");
+    let newMovieDirector = document.getElementById("movie-director");
+    let newMovieDescription = document.getElementById("movie-plot");
+    let newMovieActors = document.getElementById("movie-actors");
 
+    // New Movies add
 
-    // fetch('https://abundant-automatic-knee.glitch.me/movies')
-    //     .then(response => response.json())
-    //     .then(movies => {
-    //         hideLoading()
-    //         console.log(movies)
-    //         let htmlStr = "";
-    //         for(let movie of movies){
-    //             htmlStr += `<h1>${movie.title}</h1><p> Directed by: ${movie.director} <br> <img src="${movie.poster}"> </p>`
-    //         }
-    //         $("#container").html(htmlStr)
-    //         $("#add-movie")
-    //
-    //     });
-}
+    $("#new-movie-submit").click(() => {
+        console.log(newMovieTitle.value);
+        let postThis = {
+            "title": newMovieTitle.value,
+            "rating": newMovieRating.value,
+            "poster": newMoviePoster.value,
+            "year": newMovieYear.value,
+            "genre": newMovieGenre.value,
+            "director": newMovieDirector.value,
+            "plot": newMovieDescription.value,
+            "actors": newMovieActors.value
+        };
+        let postOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(postThis),
+        };
+        fetch('https://abundant-automatic-knee.glitch.me/movies', postOptions)
+                    .then(getMovies);
 
-$(document).ready( function () {
-    fetchHandler(event);
+            });
 });
 
-let newMovieTitle = document.getElementById("movie-title")
-let newMovieRating = document.getElementById("movie-rating")
-let newMoviePoster = document.getElementById("movie-poster")
-let newMovieYear = document.getElementById("movie-year")
-let newMovieGenre = document.getElementById("movie-genre")
-let newMovieDirector = document.getElementById("movie-director")
-let newMovieDescription = document.getElementById("movie-plot")
-let newMovieActors = document.getElementById("movie-actors")
 
-let newMovie = {
-    "title": newMovieTitle.value,
-    "rating": newMovieRating.value,
-    "poster": newMoviePoster.value,
-    "year": newMovieYear.value,
-    "genre": newMovieGenre.value,
-    "director": newMovieDirector.value,
-    "plot": newMovieDescription.value,
-    "actors": newMovieActors.value
 
-};
+for (let movie of movies) {
+    let htmlStr = <h1>${movie.title}</h1><p>by: ${movie.director}</p><p>Rating: ${movie.rating}</p>;
+    htmlStr += <button id="delete-${movie.id}" class="btn btn-primary deleteMovie">Delete</button>
+    $('#container').append(htmlStr)
+    $(#delete-${movie.id}).click(function () {
+        fetch(`https://abundant-automatic-knee.glitch.me/movies/${movie.id}, deleteOptions).then(getMovies)`;
+    })
+}
 
-let postThis = {
-    "title": newMovieTitle.value,
-    "rating": newMovieRating.value,
-    "poster": newMoviePoster.value,
-    "year": newMovieYear.value,
-    "genre": newMovieGenre.value,
-    "director": newMovieDirector.value,
-    "plot": newMovieDescription.value,
-    "actors": newMovieActors.value
-
-};
-
-let postOptions = {
-    method: 'POST',
+let deleteOptions = {
+    method: 'DELETE',
     headers: {
         'Content-Type': 'application/json',
     },
-    body: JSON.stringify(postThis),
-};
-
-$("#new-movie-submit").click(() => {
-    // fetch('https://abundant-automatic-knee.glitch.me/movies', postOptions)
-    //     .then(getMovies);
-    fetch('https://abundant-automatic-knee.glitch.me/movies')
-        .then(response => response.json())
-        .then(movies => {
-            fetch('https://abundant-automatic-knee.glitch.me/movies', postOptions)
-                .then(getMovies);
-            // for (let movie of movies) {
-            //     if(movie.title !== newMovie.title || movie.rating !== newMovie.rating || movie.year !== newMovie.year || movie.genre !== newMovie.genre || movie.director !== newMovie.director || movie.plot !== newMovie.plot || movie.actors !== newMovie.actors) {
-            //         fetch('https://abundant-automatic-knee.glitch.me/movies', postOptions)
-            //             .then(getMovies);
-            //     } else {
-            //         alert("Hey, that movie already exists!");
-            //         break;
-            //     }
-            // }
-        });
-
-});
-
-
-
+}
