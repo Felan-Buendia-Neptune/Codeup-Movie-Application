@@ -26,7 +26,7 @@ $(document).ready(function(){
                 hideLoading();
                 console.log(movies);
                 let htmlStr = "";
-                for(let movie of movies){
+                for (let movie of movies) {
                     htmlStr += `<h1>${movie.title}</h1>
 <p>
 Rating: ${movie.rating} <br>
@@ -36,12 +36,23 @@ Directed by: ${movie.director} <br>
 Plot: ${movie.plot} <br>
 Actors: ${movie.actors} <br>
     <img src="${movie.poster}">
-     </p> <button class="edit-movie-submit">Edit</button>`
-                }
-                $("#container").html(htmlStr);
-            });
-    }
+     </p> <button id="delete-${movies.id}">Delete</button>`
 
+                    $("#container").html(htmlStr);
+                    $(`#delete-${movie.id}`).click(function () {
+                        fetch(`https://abundant-automatic-knee.glitch.me/movies/${movie.id}`, deleteOptions).then(getMovies)
+                    })
+
+
+                    let deleteOptions = {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                }
+    });
+    }
 
 
 // display loading
@@ -93,20 +104,3 @@ Actors: ${movie.actors} <br>
             });
 });
 
-
-
-for (let movie of movies) {
-    let htmlStr = <h1>${movie.title}</h1><p>by: ${movie.director}</p><p>Rating: ${movie.rating}</p>;
-    htmlStr += <button id="delete-${movie.id}" class="btn btn-primary deleteMovie">Delete</button>
-    $('#container').append(htmlStr)
-    $(#delete-${movie.id}).click(function () {
-        fetch(`https://abundant-automatic-knee.glitch.me/movies/${movie.id}, deleteOptions).then(getMovies)`;
-    })
-}
-
-let deleteOptions = {
-    method: 'DELETE',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-}
