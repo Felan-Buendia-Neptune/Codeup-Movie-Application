@@ -33,7 +33,9 @@ let moviesArray = []
 
 
 
-                    htmlStr += `<h1>${movie.title}</h1>
+                    htmlStr += `<div class="movieList card" style="width: 18rem;">
+                <img class="card-img-top" src="${movie.poster}" alt="Card image cap">
+                        <h1>${movie.title}</h1>
  <p>
  Rating: ${movie.rating} 
  Year: ${movie.year} <br>
@@ -41,15 +43,16 @@ let moviesArray = []
  Directed by: ${movie.director} <br>
  Plot: ${movie.plot} <br>
  Actors: ${movie.actors} <br>
-     <img src="${movie.poster}">
+   
       </p> <button data-id="${movie.id}" class="delete-movie">Delete</button>
       <button data-id="${movie.id}" class="modal">Edit</button> `
 
                     $("#container").html(htmlStr);
-                    html += `<option value=${movie.id}>${movie.title}</option>`;
+                    html += `<option value=${movie.id}>${movie.title}</option>
+    </div>`;
                     // $("#selectMenu").html(`<option value='-1' selected>Select a movie</option>`)
 
-                };
+                }
                 $("#selectMenu").html("<option value='-1' selected>Select a movie</option>" + html)
 
                 let deleteOptions = {
