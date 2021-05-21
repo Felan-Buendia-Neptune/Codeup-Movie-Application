@@ -43,7 +43,7 @@ let moviesArray = []
 
 
 
-                    htmlStr += `<div class="col-4"><div class="movieList card w-100 m-1">
+                    htmlStr += `<div class="col-4"><div class="movieList card">
                 <img class="card-img-top" src="${movie.poster}" alt="Card image cap">
                 <div class="card-body">
                         <h1 class="card-title">${movie.title}</h1>
@@ -125,7 +125,7 @@ let moviesArray = []
     });
     //Variables that grab the info to be edited on movie
     let editMovieTitle = document.getElementById("movie-title");
-    console.log(newMovieTitle);
+
     let editMovieRating = document.getElementById("movie-rating");
     let editMoviePoster = document.getElementById("movie-poster");
     let editMovieYear = document.getElementById("movie-year");
@@ -147,24 +147,8 @@ let moviesArray = []
     };
 
 
-
-
-
 //all of ADD movie JS
-
-    //GRAB info for new movie add
-    let newMovieTitle = document.getElementById("movie-title");
-    console.log(newMovieTitle);
-    let newMovieRating = document.getElementById("movie-rating");
-    let newMoviePoster = document.getElementById("movie-poster");
-    let newMovieYear = document.getElementById("movie-year");
-    let newMovieGenre = document.getElementById("movie-genre");
-    let newMovieDirector = document.getElementById("movie-director");
-    let newMovieDescription = document.getElementById("movie-plot");
-    let newMovieActors = document.getElementById("movie-actors");
-
-    // New Movies add on butoon click
-
+// New Movies add on butoon click
     $("#new-movie-submit").click(() => {
         console.log(newMovieTitle.value);
         let postThis = {
@@ -189,27 +173,17 @@ let moviesArray = []
 
     });
 
+    //GRAB info for new movie add
+    let newMovieTitle = document.getElementById("movie-title");
+    console.log(newMovieTitle);
+    let newMovieRating = document.getElementById("movie-rating");
+    let newMoviePoster = document.getElementById("movie-poster");
+    let newMovieYear = document.getElementById("movie-year");
+    let newMovieGenre = document.getElementById("movie-genre");
+    let newMovieDirector = document.getElementById("movie-director");
+    let newMovieDescription = document.getElementById("movie-plot");
+    let newMovieActors = document.getElementById("movie-actors");
 
 
-    // let editMovieTitle = document.getElementById("movie-title");
-    // console.log(newMovieTitle);
-    // let editMovieRating = document.getElementById("movie-rating");
-    // let editMoviePoster = document.getElementById("movie-poster");
-    // let editMovieYear = document.getElementById("movie-year");
-    // let editMovieGenre = document.getElementById("movie-genre");
-    // let editMovieDirector = document.getElementById("movie-director");
-    // let editMovieDescription = document.getElementById("movie-plot");
-    // let editMovieActors = document.getElementById("edit-movie-actors");
-    //
-    // let patchThis = {
-    //     "title": editMovieTitle.value,
-    //     "rating": editMovieRating.value,
-    //     "poster": editMoviePoster.value,
-    //     "year": editMovieYear.value,
-    //     "genre": editMovieGenre.value,
-    //     "director": editMovieDirector.value,
-    //     "plot": editMovieDescription.value,
-    //     "actors": editMovieActors.value
-    // };
 });
 
