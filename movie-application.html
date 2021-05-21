@@ -23,16 +23,16 @@
 
 
 
-<div class="contain">
+<div>
     <div class="row">
 
 
-        <div class="col-6 fixed">
-            <main id="container"></main>
+        <div class=" card-deck col-6">
+            <main id="container" class="row"></main>
         </div>
 
-        <div class="editAdd col-3">
-<div class="card">
+        <div class="editAdd col-3 container-fluid">
+<div class="card" id="addMovieCard">
     <div class="card-body">
 <section id="add-movie" >
     <form id="add-movie-form">
@@ -61,7 +61,7 @@
         <input id="movie-actors" type="text" placeholder="List movie actors here">
         <br>
     </form>
-    <button id="new-movie-submit">Submit</button>
+    <button id="new-movie-submit" class="btn-secondary">Submit</button>
 </section>
     </div>
 </div>
@@ -69,10 +69,10 @@
 
 <!--edit-->
 <div class="editMovie card">
-    <div class="card-body">
-  <button id="showEdit">Edit</button>
+    <div class="card-body editBorder">
+
     <select id="selectMenu"></select>
-    <div class="editMovie" id="editMovie">
+    <div class="" id="editMovie">
         <label for="newTitle">Change Title:</label>
         <input type="text" id="newTitle">
         <br>
@@ -91,12 +91,12 @@
         <label for="newActors">Change Actors:</label>
         <input type="text" id="newActors">
         <br>
-        <div class="">
-            <label for="newPlot">Change Plot:</label>
-            <textarea id="newPlot" rows="3" cols="6"></textarea>
+        <div class="w-100">
+            <label for="newPlot">Change Plot:</label> <br>
+            <textarea id="newPlot" rows="6" cols="24"></textarea>
         </div>
         <br>
-        <button id="changeMovie">Update Movie</button>
+        <button id="changeMovie" class="btn-secondary">Update Movie</button>
 
     </div>
     </div>

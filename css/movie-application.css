@@ -1,3 +1,4 @@
+/*loading animation*/
 #loading {
     width: 2rem;
     height: 2rem;
@@ -21,13 +22,14 @@
           }
 }
 
+/*movies, add movies and edit movies css and positioning*/
 .contain {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 35px;
     color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
 }
 
 .jumbo {
@@ -48,23 +50,34 @@ body {
 }
 
 .editAdd {
-    background-color: black;
-    color: black;
     padding: 0;
+    margin: 0 0 0 0;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.movieList {
     margin: 0 0 0 0;
     display: flex;
     flex-direction: column;
 }
 
-.movieList {
-    margin: 0 0 0 0;
-}
-
 .row {
-    width: 100%
-}
 
-.fixed {
-    position: fixed;
-    top: 20px;
+
+}
+#addMovieCard {
+    border: solid 12px black;
+    margin-bottom: 5px;
+
+}
+input {
+    width:100%;
+}
+select {
+    width:100%;
+}
+.editBorder {
+    border: solid 12px black;
 }

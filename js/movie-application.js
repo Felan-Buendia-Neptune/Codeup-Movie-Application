@@ -10,15 +10,25 @@ $(document).ready(function () {
         setTimeout(() => {
             $(loader).removeClass("display");
         }, 30000);
-    }
+    };
 
 // hiding loading
     function hideLoading() {
         $(loader).removeClass("display");
-    }
+    };
+
+    // display loading
+    function fetchHandler(event) {
+        displayLoading();
+        getMovies();
+    };
+
+    $(document).ready(function () {
+        fetchHandler(event);
+    });
 
 
-//display container
+//display movie container
 let moviesArray = []
     let getMovies = () => {
         fetch('https://abundant-automatic-knee.glitch.me/movies')
@@ -33,24 +43,24 @@ let moviesArray = []
 
 
 
-                    htmlStr += `<div class="movieList card" style="width: 18rem;">
+                    htmlStr += `<div class="col-4"><div class="movieList card w-100 m-1">
                 <img class="card-img-top" src="${movie.poster}" alt="Card image cap">
-                        <h1>${movie.title}</h1>
- <p>
- Rating: ${movie.rating} 
+                <div class="card-body">
+                        <h1 class="card-title">${movie.title}</h1>
+ <p class="card-text">
+ Rating: ${movie.rating} <br>
  Year: ${movie.year} <br>
  Genre: ${movie.genre} <br>
  Directed by: ${movie.director} <br>
  Plot: ${movie.plot} <br>
  Actors: ${movie.actors} <br>
    
-      </p> <button data-id="${movie.id}" class="delete-movie">Delete</button>
-      <button data-id="${movie.id}" class="modal">Edit</button> `
+      </p> <button data-id="${movie.id}" class="delete-movie btn-secondary">Delete</button></div></div></div>`;
+
 
                     $("#container").html(htmlStr);
-                    html += `<option value=${movie.id}>${movie.title}</option>
-    </div>`;
-                    // $("#selectMenu").html(`<option value='-1' selected>Select a movie</option>`)
+                    html += `<option value=${movie.id}>${movie.title}</option>`
+
 
                 }
                 $("#selectMenu").html("<option value='-1' selected>Select a movie</option>" + html)
@@ -74,7 +84,7 @@ let moviesArray = []
 
     }
 
-    //when the option selected is changed, update the input
+    //when the option selected is changed, update the given input to the movie that was selected
     $("#selectMenu").change(function (){
         let target = $(this).val()
         console.log(target)
@@ -87,12 +97,12 @@ let moviesArray = []
                     $("#newDirector").val(movie.director)
                     $("#newPlot").val(movie.plot)
                     $("#newActors").val(movie.actors)
-                };
-            };
+                }
+            }
         }
 
     );
-
+//actually what appends or patches the new info into the movies array on button click
     $("#changeMovie").click(function(){
         let input = $("#selectMenu").val()
         let insert = {
@@ -113,22 +123,36 @@ let moviesArray = []
             .then(getMovies);
 
     });
+    //Variables that grab the info to be edited on movie
+    let editMovieTitle = document.getElementById("movie-title");
+    console.log(newMovieTitle);
+    let editMovieRating = document.getElementById("movie-rating");
+    let editMoviePoster = document.getElementById("movie-poster");
+    let editMovieYear = document.getElementById("movie-year");
+    let editMovieGenre = document.getElementById("movie-genre");
+    let editMovieDirector = document.getElementById("movie-director");
+    let editMovieDescription = document.getElementById("movie-plot");
+    let editMovieActors = document.getElementById("edit-movie-actors");
 
-
-
-
-// display loading
-    function fetchHandler(event) {
-        displayLoading();
-        getMovies();
+//the actual patch info
+    let patchThis = {
+        "title": editMovieTitle.value,
+        "rating": editMovieRating.value,
+        "poster": editMoviePoster.value,
+        "year": editMovieYear.value,
+        "genre": editMovieGenre.value,
+        "director": editMovieDirector.value,
+        "plot": editMovieDescription.value,
+        "actors": editMovieActors.value
     };
 
-    $(document).ready(function () {
-        fetchHandler(event);
-    });
 
 
-    //GRAB
+
+
+//all of ADD movie JS
+
+    //GRAB info for new movie add
     let newMovieTitle = document.getElementById("movie-title");
     console.log(newMovieTitle);
     let newMovieRating = document.getElementById("movie-rating");
@@ -139,7 +163,7 @@ let moviesArray = []
     let newMovieDescription = document.getElementById("movie-plot");
     let newMovieActors = document.getElementById("movie-actors");
 
-    // New Movies add
+    // New Movies add on butoon click
 
     $("#new-movie-submit").click(() => {
         console.log(newMovieTitle.value);
@@ -164,25 +188,28 @@ let moviesArray = []
             .then(getMovies);
 
     });
-    let editMovieTitle = document.getElementById("movie-title");
-    console.log(newMovieTitle);
-    let editMovieRating = document.getElementById("movie-rating");
-    let editMoviePoster = document.getElementById("movie-poster");
-    let editMovieYear = document.getElementById("movie-year");
-    let editMovieGenre = document.getElementById("movie-genre");
-    let editMovieDirector = document.getElementById("movie-director");
-    let editMovieDescription = document.getElementById("movie-plot");
-    let editMovieActors = document.getElementById("edit-movie-actors");
 
-    let patchThis = {
-        "title": editMovieTitle.value,
-        "rating": editMovieRating.value,
-        "poster": editMoviePoster.value,
-        "year": editMovieYear.value,
-        "genre": editMovieGenre.value,
-        "director": editMovieDirector.value,
-        "plot": editMovieDescription.value,
-        "actors": editMovieActors.value
-    };
+
+
+    // let editMovieTitle = document.getElementById("movie-title");
+    // console.log(newMovieTitle);
+    // let editMovieRating = document.getElementById("movie-rating");
+    // let editMoviePoster = document.getElementById("movie-poster");
+    // let editMovieYear = document.getElementById("movie-year");
+    // let editMovieGenre = document.getElementById("movie-genre");
+    // let editMovieDirector = document.getElementById("movie-director");
+    // let editMovieDescription = document.getElementById("movie-plot");
+    // let editMovieActors = document.getElementById("edit-movie-actors");
+    //
+    // let patchThis = {
+    //     "title": editMovieTitle.value,
+    //     "rating": editMovieRating.value,
+    //     "poster": editMoviePoster.value,
+    //     "year": editMovieYear.value,
+    //     "genre": editMovieGenre.value,
+    //     "director": editMovieDirector.value,
+    //     "plot": editMovieDescription.value,
+    //     "actors": editMovieActors.value
+    // };
 });
 
