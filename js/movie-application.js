@@ -32,6 +32,7 @@ let moviesArray = []
                 for (let movie of movies) {
 
 
+
                     htmlStr += `<h1>${movie.title}</h1>
  <p>
  Rating: ${movie.rating} 

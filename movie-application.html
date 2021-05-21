@@ -14,9 +14,27 @@
 <div id="loading">
 </div>
 
-<main id="container"></main>
 
-<section id="add-movie">
+    <div class="jumbo">
+        <h1 class="display-4">FelanFlicks</h1>
+        <p class="lead">My favorite movie gallery</p>
+    </div>
+
+
+
+
+<div class="contain">
+    <div class="row">
+
+
+        <div class="col-6">
+            <main id="container"></main>
+        </div>
+
+        <div class="editAdd col-3">
+<div class="card">
+    <div class="card-body">
+<section id="add-movie" >
     <form id="add-movie-form">
         <label for="movie-title">Movie Title:</label>
     <input id="movie-title" type="text" placeholder="Enter movie title here">
@@ -45,10 +63,13 @@
     </form>
     <button id="new-movie-submit">Submit</button>
 </section>
+    </div>
+</div>
 <br>
 
 <!--edit-->
-<div>
+<div class="card">
+    <div class="card-body">
   <button id="showEdit">Edit</button>
     <select id="selectMenu"></select>
     <div class="editMovie" id="editMovie">
@@ -78,7 +99,15 @@
         <button id="changeMovie">Update Movie</button>
 
     </div>
+    </div>
 </div>
+        </div>
+
+
+
+</div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="js/movie-application.js"></script>

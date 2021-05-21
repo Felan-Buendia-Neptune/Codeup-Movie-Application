@@ -20,3 +20,39 @@
     transform: rotate(360deg);
           }
 }
+
+.contain {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 35px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.jumbo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+    background-color: white;
+    border: 30px solid black;
+    margin: 20px 0;
+}
+
+body {
+    background-image: url("https://images.pexels.com/photos/7234231/pexels-photo-7234231.jpeg?cs=srgb&dl=pexels-pavel-danilyuk-7234231.jpg&fm=jpg");
+    background-size: contain;
+    margin: 0;
+}
+
+.editAdd {
+    background-color: black;
+    color: black;
+    padding: 0;
+    margin: 0 0 0 20em;
+    display: flex;
+    flex-direction: column;
+
+}
